@@ -20,3 +20,28 @@ Defines the nature of requests to be made.
 		  
 		  var_dump($res);
 		  echo $res->getBody();
+		  
+
+## PSR-7
+enables better collaboration across PHP tools and frameworks. 
+Defines a standard interface for HTTP messages
+
+![PSR-7 Interfaces](./screenshots/psr-7_interfaces.png)
+### Interfaces
+* MessageInterface 
+	* Defines a common interface for HTTP requests and responses
+	* Messages are immutable. Changes creates new messages
+* RequestInterface
+	* interface for HTTP client-side requests 
+* ResponseInterface
+	* interfaces for server-side response 
+* ServerRequestInterface
+	*  interface for server-side requests
+* StreamInterface
+	* interface for PHP data streams
+* UploadedFileInterface
+	* interface for files uploaded and revieved as part of an HTTP request 
+* UriInterface
+	* interface for URI 
+
+### Middleware
