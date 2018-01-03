@@ -11,12 +11,15 @@ $promise = $client->requestAsync(
   'http://jsonplaceholder.typicode.com/posts/1'
 );
 
-$promise->then(
-  function (Response $resp) {
-      echo $resp->getBody();
-  },
-  function (RequestException $e) {
-      echo $e->getMessage();
-  }
+$promise2 = $client->requestAsync(
+  'GET',
+  'http://jsonplaceholder.typicode.com/posts/2'
 );
-$promise->wait();
+//pushes the two get requests into a single array named $promises
+$promises = [$promise, $promise2];
+//Takes two or more promise results and handles them concurrently.
+$results = GuzzleHttp\Promise\settle($promises)->wait();
+
+foreach ($results as $result) {
+    echo $result['value']->getBody();
+}
